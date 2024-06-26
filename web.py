@@ -3,7 +3,6 @@ import streamlit as st
 import altair as alt
 import plotly.express as px
 import datetime
-from streamlit_space import space
 import numpy as np
 import plotly as plt
 
@@ -22,7 +21,7 @@ st.markdown("I analyze the :blue[relationship between score and other variables]
 
 st.divider()
 
-sp = pd.read_csv('study_performance.csv')
+sp = pd.read_csv('C:/Users/vyvil/Documents/study_performance.csv')
 
 st.header("Original data set")
 
