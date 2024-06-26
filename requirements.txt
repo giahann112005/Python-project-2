@@ -4,3 +4,9 @@ numpy
 streamlit_extras
 streamlit_lottie
 plotly.express
+altair 
+urllib.parse
+plotly.graph_objects
+datetime
+streamlit_space
+plotly 
