@@ -51,10 +51,16 @@ tab1, tab2, tab3, tab4 = st.tabs(["Pie Chart", "Box Chart", "Bar Chart", "Scatte
 with tab1:
     by_what_1 = st.radio(
             "Choose a category:",
-            ('lunch', 'gender', 'test_preparation_course','parental_level_of_education'), horizontal=True,
+            ('lunch', 'test_preparation_course','parental_level_of_education'), horizontal=True,
             key = "r1")
     sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
-    fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7) 
+    gender = ['male', 'female' ]
+    st.subheader("")
+    selected_gender = st.selectbox("Seletct gender", gender)
+    st.caption(f"You selected: {selected_gender}")
+    if selected_gender:filterd_data = sp[sp['gender'] == selected_gender]
+    fig1 = px.pie(fillterd_data, values = fillterd_data["average_score"], names = fillterd_data[by_what_1], hole = 0.7)
+    fig1.update_layout(title = f"Students score in each subject of different ethnicity group in {selected_gender}")
     fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
     st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
 with tab2:
