@@ -12,11 +12,12 @@ with st.sidebar:
     st.text("Description: This project understands how the student's performance (test scores) is affected by other variables such as Gender, Ethnicity, Parental level of education, Lunch and Test preparation course.")
 
 with st.container():
-    st.subheader("")
-    st.title("x")
-    st.write("x" ) 
+    st.subheader("Business IT 2 | Python Project 2")
+    st.title("Student Study Performance")
 
-st.title("Score")
+colored_header(
+    label="SCORES OF STUDENTS",
+    color_name="light-blue-70")
 st.markdown("I analyze the :blue[relationship between score and other variables] in :red[student study performance] data set available on the internet")
 
 st.divider()
