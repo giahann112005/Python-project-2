@@ -54,7 +54,9 @@ with tab1:
             ('lunch', 'gender', 'test_preparation_course','parental_level_of_education'), horizontal=True,
             key = "r1")
     sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
-    fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7) 
+    fig1 = px.box(sp, y = "average_score", x = by_what_1, notched=True, points ='all', 
+                  labels={"average_score": "average_score"},
+                  title = "xxxxxxxx") 
     fig1.update_traces(text = sp[by_what_1], textposition = "outside")
     st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
 with tab2:
