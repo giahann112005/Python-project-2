@@ -49,34 +49,34 @@ st.text("")
 
 tab1, tab2, tab3, tab4 = st.tabs(["Pie Chart", "Box Chart", "Bar Chart", "Scatter Chart"])
 with tab1:
- by_what_1 = st.radio(
+    by_what_1 = st.radio(
             "Choose a category:",
             ('lunch', 'gender', 'test_preparation_course','parental_level_of_education'), horizontal=True,
             key = "r1")
- sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
-fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7) 
-fig1.update_traces(text = sp[by_what_1], textposition = "outside")
-st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
+    sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
+    fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7) 
+    fig1.update_traces(text = sp[by_what_1], textposition = "outside")
+    st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
 with tab2:
- by_what_2 = st.radio(
+    by_what_2 = st.radio(
             "Choose a subject score:",
             ('math_score', 'reading_score', 'writing_score'), 
             horizontal = True,
             key = "r2")
-gender = ['male', 'female' ]
-st.subheader("")
-selected_gender = st.selectbox("Seletct gender", gender)
-st.caption(f"You selected: {selected_gender}")
-if selected_gender:
- filterd_data = sp[sp['gender'] == selected_gender]
-chart= px.box(filterd_data,x= filterd_data['race_ethnicity'],
+    gender = ['male', 'female' ]
+    st.subheader("")
+    selected_gender = st.selectbox("Seletct gender", gender)
+    st.caption(f"You selected: {selected_gender}")
+    if selected_gender:
+    filterd_data = sp[sp['gender'] == selected_gender]
+    chart= px.box(filterd_data,x= filterd_data['race_ethnicity'],
                   y= filterd_data[by_what_2], notched=True, points ='all', 
                   labels={"average_score": "average_score"},)
-chart.update_layout(title=f"Students score in each subject of different ethnicity group in {selected_gender}",
+    chart.update_layout(title=f"Students score in each subject of different ethnicity group in {selected_gender}",
                         xaxis_title="Race/Ethnicity", yaxis_title="Score",xaxis_tickangle=0)
-chart.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+    chart.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=0, opacity=0.6)
-st.plotly_chart(chart)
+    st.plotly_chart(chart)
 with tab3:
   average_scores = sp.groupby('parental_level_of_education')[['math_score', 'reading_score', 'writing_score']].mean().reset_index()
 average_scores['average_score'] = average_scores[['math_score', 'reading_score', 'writing_score']].mean(axis=1)
