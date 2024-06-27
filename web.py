@@ -85,7 +85,7 @@ with tab3:
     fig = px.bar(top_groups, x='parental_level_of_education', y='average_score', title=f"Top {top_n} Groups That Have Highest Average Score")
     st.plotly_chart(fig)
 with tab4:
-    st.sidebar.header('Filter Options')
+    st.sidebar.header('Filter Options For Scatter Chart')
     gender = st.sidebar.multiselect('Gender', options=sp['gender'].unique(), default=sp['gender'].unique())
     race_ethnicity = st.sidebar.multiselect('Race/Ethnicity', options=sp['race_ethnicity'].unique(), default=sp['race_ethnicity'].unique())
     parental_level_of_education = st.sidebar.multiselect('Parental Level of Education', options=sp['parental_level_of_education'].unique(), default=sp['parental_level_of_education'].unique())
