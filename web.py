@@ -47,7 +47,7 @@ with tab2:
             "Choose a category:",
             ('lunch', 'gender', 'test_preparation_course','race_ethnicity'), horizontal=True,
             key = "r1")
-    st.header("The percentage of the average score in each variable")
+    st.title("The percentage of the average score in each variable")
     sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
     fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7)
     fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
@@ -55,7 +55,7 @@ with tab2:
 with tab3:
     average_scores = sp.groupby('parental_level_of_education')[['math_score', 'reading_score', 'writing_score']].mean().reset_index()
     average_scores['average_score'] = average_scores[['math_score', 'reading_score', 'writing_score']].mean(axis=1)
-    st.header("Top Levels Of Parental Education That Correspond With The Highest Average Score")
+    st.title("Top Levels Of Parental Education That Correspond With The Highest Average Score")
     top_n = st.slider('Select number of groups', 1, len(average_scores), 1)
     top_groups = average_scores.nlargest(top_n, 'average_score')
     fig = px.bar(top_groups, x='parental_level_of_education', y='average_score', title=f"Top {top_n} Levels Of Parental Education That Correspond With The Highest Average Score")
