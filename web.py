@@ -15,7 +15,7 @@ with st.container():
     st.subheader("Business IT 2 | Python Project 2")
     st.title("Student Study Performance")
 
-st.title("Scores of students)
+st.title("Scores of students")
 st.markdown("I analyze the :blue[relationship between score and other variables] in :red[student study performance] data set available on the internet")
 
 st.divider()
