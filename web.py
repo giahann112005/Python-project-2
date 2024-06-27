@@ -15,9 +15,7 @@ with st.container():
     st.subheader("Business IT 2 | Python Project 2")
     st.title("Student Study Performance")
 
-colored_header(
-    label="SCORES OF STUDENTS",
-    color_name="light-blue-70")
+st.title("SCORES OF STUDENTS")
 st.markdown("I analyze the :blue[relationship between score and other variables] in :red[student study performance] data set available on the internet")
 
 st.divider()
