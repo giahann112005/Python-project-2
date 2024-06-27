@@ -47,7 +47,7 @@ with tab2:
             "Choose a category:",
             ('lunch', 'gender', 'test_preparation_course','race_ethnicity'), horizontal=True,
             key = "r1")
-    st.caption("The percentage of the average score in each variable")
+    st.header("The percentage of the average score in each variable")
     sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
     fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7)
     fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
