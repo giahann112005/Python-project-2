@@ -41,8 +41,6 @@ st.markdown(
 """
 )
 st.dataframe(sp, width = 1000)
-st.header("")
-st.text("")
 tab1, tab2, tab3 = st.tabs(["Scatter Chart", "Pie Chart", "Bar Chart"])
 with tab2:
     by_what_1 = st.radio(
