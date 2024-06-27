@@ -57,7 +57,6 @@ with tab1:
     fig1 = px.box(sp, y = "average_score", x = by_what_1, notched=True, points ='all', 
                   labels={"average_score": "average_score"},
                   title = "xxxxxxxx") 
-    fig1.update_traces(text = sp[by_what_1], textposition = "outside")
     st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
 with tab2:
     by_what_2 = st.radio(
