@@ -15,7 +15,7 @@ with st.container():
     st.subheader("Business IT 2 | Python Project 2")
     st.title("Student Study Performance")
 
-st.title("SCORES OF STUDENTS")
+st.title("Scores of students)
 st.markdown("I analyze the :blue[relationship between score and other variables] in :red[student study performance] data set available on the internet")
 
 st.divider()
@@ -40,18 +40,16 @@ st.markdown(
     9. **average_score**: average score
 """
 )
-
 st.dataframe(sp, width = 1000)
-
-st.header("Average score of three subjects in each variables")
+st.header("")
 st.text("")
-
 tab1, tab2, tab3 = st.tabs(["Scatter Chart", "Pie Chart", "Bar Chart"])
 with tab2:
     by_what_1 = st.radio(
             "Choose a category:",
-            ('lunch', 'test_preparation_course','parental_level_of_education'), horizontal=True,
+            ('lunch', 'gender', 'test_preparation_course','race_ethnicity'), horizontal=True,
             key = "r1")
+    st.header("Percent of average score in each variables")
     sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
     fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7)
     fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
