@@ -67,8 +67,7 @@ with tab2:
     st.subheader("")
     selected_gender = st.selectbox("Seletct gender", gender)
     st.caption(f"You selected: {selected_gender}")
-        if selected_gender:
-    filterd_data = sp[sp['gender'] == selected_gender]
+    if selected_gender:filterd_data = sp[sp['gender'] == selected_gender]
     chart= px.box(filterd_data,x= filterd_data['race_ethnicity'],
                   y= filterd_data[by_what_2], notched=True, points ='all', 
                   labels={"average_score": "average_score"},)
