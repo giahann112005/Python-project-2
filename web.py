@@ -5,6 +5,7 @@ import plotly.express as px
 import datetime
 import numpy as np
 import plotly as plt
+from annotated_text import annotated_text
 
 with st.sidebar:
     st.markdown("**HỨA NGUYỄN GIA HÂN**")
