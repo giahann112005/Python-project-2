@@ -13,7 +13,7 @@ with st.sidebar:
 with st.container():
     st.subheader("Business IT 2 | Python Project 2")
     st.title("Student Study Performance")
-    st.text("Description: This project understands how the student's performance (test scores) is affected by other variables such as Gender, Ethnicity, Parental level of education, Lunch and Test preparation course.")
+    annoted_text("Description: This project understands how the student's performance (test scores) is affected by other variables such as Gender, Ethnicity, Parental level of education, Lunch and Test preparation course.")
 
 st.header("Scores of students")
 st.markdown("I analyze the :blue[relationship between score and other variables] in :red[student study performance] data set available on the internet")
@@ -41,25 +41,8 @@ st.markdown(
 """
 )
 st.dataframe(sp, width = 1000)
+
 tab1, tab2, tab3 = st.tabs(["Scatter Chart", "Pie Chart", "Bar Chart"])
-with tab2:
-    by_what_1 = st.radio(
-            "Choose a category:",
-            ('lunch', 'gender', 'test_preparation_course','race_ethnicity'), horizontal=True,
-            key = "r1")
-    st.header("The percentage of the average score in each variable")
-    sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
-    fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7)
-    fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
-    st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
-with tab3:
-    average_scores = sp.groupby('parental_level_of_education')[['math_score', 'reading_score', 'writing_score']].mean().reset_index()
-    average_scores['average_score'] = average_scores[['math_score', 'reading_score', 'writing_score']].mean(axis=1)
-    st.header("Top Levels Of Parental Education That Correspond With The Highest Average Score")
-    top_n = st.slider('Select number of groups', 1, len(average_scores), 1)
-    top_groups = average_scores.nlargest(top_n, 'average_score')
-    fig = px.bar(top_groups, x='parental_level_of_education', y='average_score', title=f"Top {top_n} Levels Of Parental Education That Correspond With The Highest Average Score")
-    st.plotly_chart(fig)
 with tab1:
     st.sidebar.header('Filter Options For Scatter Chart')
     gender = st.sidebar.multiselect('Gender', options=sp['gender'].unique(), default=sp['gender'].unique())
@@ -82,5 +65,25 @@ with tab1:
     color='writing_score',
     tooltip=['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course', 'math_score', 'reading_score', 'writing_score']
     ).interactive()
+    st.header("The Results In Three Subjects For Each Student's Academic Performance."
 
     st.altair_chart(chart, use_container_width=True)
+with tab2:
+    by_what_1 = st.radio(
+            "Choose a category:",
+            ('lunch', 'gender', 'test_preparation_course','race_ethnicity'), horizontal=True,
+            key = "r1")
+    st.header("The percentage of the average score in each variable")
+    sp['average_score'] = sp.apply(lambda row:(row.math_score + row.reading_score + row.writing_score) / 3, axis = 1)
+    fig1 = px.pie(sp, values = "average_score", names = by_what_1, hole = 0.7)
+    fig1.update_traces(text = sp[by_what_1], textposition = "outside") 
+    st.plotly_chart(fig1, theme = "streamlit", use_container_width=True)
+with tab3:
+    average_scores = sp.groupby('parental_level_of_education')[['math_score', 'reading_score', 'writing_score']].mean().reset_index()
+    average_scores['average_score'] = average_scores[['math_score', 'reading_score', 'writing_score']].mean(axis=1)
+    st.header("Top Levels Of Parental Education That Correspond With The Highest Average Score")
+    top_n = st.slider('Select number of groups', 1, len(average_scores), 1)
+    top_groups = average_scores.nlargest(top_n, 'average_score')
+    fig = px.bar(top_groups, x='parental_level_of_education', y='average_score', title=f"Top {top_n} Levels Of Parental Education That Correspond With The Highest Average Score")
+    st.plotly_chart(fig)
+
