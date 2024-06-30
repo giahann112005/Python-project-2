@@ -65,7 +65,7 @@ with tab1:
     color='writing_score',
     tooltip=['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course', 'math_score', 'reading_score', 'writing_score']
     ).interactive()
-    st.header("The Results In Three Subjects For Each Student's Academic Performance."
+    st.header("The Results In Three Subjects For Each Student's Academic Performance")
 
     st.altair_chart(chart, use_container_width=True)
 with tab2:
